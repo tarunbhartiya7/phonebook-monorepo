@@ -1,7 +1,7 @@
 ## Start
 
-at the root directory you can run `yarn dev` for running the server
-for running the frontend you can go to frontend directory and run `yarn start`
+server - run `yarn dev` at root directory
+client - run `yarn start` after navigating to frontend directory
 
 The frontend app runs on localhost:3000 and uses proxy localhost:3001 for API
 
@@ -9,5 +9,5 @@ The frontend app runs on localhost:3000 and uses proxy localhost:3001 for API
 
 The application is deployed on heroku
 URL:
-for staic site: https://rocky-taiga-69416.herokuapp.com/
-for api: https://rocky-taiga-69416.herokuapp.com/api/notes
+for static site: https://aqueous-earth-56599.herokuapp.com/
+for API: https://aqueous-earth-56599.herokuapp.com/api/persons
