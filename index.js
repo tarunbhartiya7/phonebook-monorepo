@@ -59,6 +59,14 @@ app.get("/api/persons/:id", (request, response) => {
 
 app.delete("/api/persons/:id", (request, response) => {
   const id = Number(request.params.id)
+  const personExist = persons.some((n) => n.id === id)
+
+  if (!personExist) {
+    return response.status(400).json({
+      error: "Invalid ID",
+    })
+  }
+
   persons = persons.filter((person) => person.id !== id)
 
   response.status(204).end()
