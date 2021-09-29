@@ -19,7 +19,6 @@ const PersonForm = ({ addPerson }) => {
 
   return (
     <>
-      <h2>add a new</h2>
       <form onSubmit={handleSubmit}>
         <div>
           name: <input value={newName} onChange={handleNoteChange} />
