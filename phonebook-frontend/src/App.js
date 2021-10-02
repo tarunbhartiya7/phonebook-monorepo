@@ -28,6 +28,16 @@ const App = () => {
     : persons
 
   const addPerson = (newName, newNumber) => {
+    if (!newName || !newNumber) {
+      setMessage({
+        message: "name or number is missing",
+        type: "error",
+      })
+      setTimeout(() => {
+        setMessage(null)
+      }, 5000)
+      return
+    }
     const person = checkIfNameExist(persons, newName)
     if (person) {
       if (
@@ -50,6 +60,15 @@ const App = () => {
               setMessage(null)
             }, 5000)
           })
+          .catch((error) => {
+            setMessage({
+              message: error.message,
+              type: "error",
+            })
+            setTimeout(() => {
+              setMessage(null)
+            }, 5000)
+          })
       }
     } else {
       const personObject = {
@@ -58,13 +77,27 @@ const App = () => {
         id: persons.length + 1,
       }
 
-      phoneBookService.create(personObject).then((returnedPerson) => {
-        setPersons(persons.concat(returnedPerson))
-        setMessage({ message: `Added ${returnedPerson.name}`, type: "success" })
-        setTimeout(() => {
-          setMessage(null)
-        }, 5000)
-      })
+      phoneBookService
+        .create(personObject)
+        .then((returnedPerson) => {
+          setPersons(persons.concat(returnedPerson))
+          setMessage({
+            message: `Added ${returnedPerson.name}`,
+            type: "success",
+          })
+          setTimeout(() => {
+            setMessage(null)
+          }, 5000)
+        })
+        .catch((error) => {
+          setMessage({
+            message: error.message,
+            type: "error",
+          })
+          setTimeout(() => {
+            setMessage(null)
+          }, 5000)
+        })
     }
   }
 
