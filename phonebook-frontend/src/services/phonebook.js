@@ -21,11 +21,11 @@ const deleteRecord = (id) => {
   return request.then((response) => response.data)
 }
 
-const phoneBookService = {
+const personService = {
   getAll,
   create,
   update,
   deleteRecord,
 }
 
-export default phoneBookService
+export default personService

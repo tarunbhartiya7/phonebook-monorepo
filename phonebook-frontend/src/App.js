@@ -3,7 +3,7 @@ import Filter from "./components/Filter"
 import Notification from "./components/Notification"
 import PersonForm from "./components/PersonForm"
 import Persons from "./components/Persons"
-import phoneBookService from "./services/phonebook"
+import personService from "./services/phonebook"
 
 const checkIfNameExist = (arr, str) =>
   arr.find(
@@ -16,7 +16,7 @@ const App = () => {
   const [message, setMessage] = useState(null)
 
   useEffect(() => {
-    phoneBookService.getAll().then((initialNotes) => {
+    personService.getAll().then((initialNotes) => {
       setPersons(initialNotes)
     })
   }, [])
@@ -47,7 +47,7 @@ const App = () => {
       ) {
         const changedPerson = { ...person, number: newNumber }
 
-        phoneBookService
+        personService
           .update(changedPerson.id, changedPerson)
           .then((returnedPerson) => {
             setPersons(
@@ -62,7 +62,7 @@ const App = () => {
           })
           .catch((error) => {
             setMessage({
-              message: error.message,
+              message: error.response.data.error,
               type: "error",
             })
             setTimeout(() => {
@@ -77,7 +77,7 @@ const App = () => {
         id: persons.length + 1,
       }
 
-      phoneBookService
+      personService
         .create(personObject)
         .then((returnedPerson) => {
           setPersons(persons.concat(returnedPerson))
@@ -91,7 +91,7 @@ const App = () => {
         })
         .catch((error) => {
           setMessage({
-            message: error.message,
+            message: error.response.data.error,
             type: "error",
           })
           setTimeout(() => {
@@ -105,7 +105,7 @@ const App = () => {
 
   const handleDelete = ({ name, id }) => {
     if (window.confirm(`Delete ${name} ?`)) {
-      phoneBookService
+      personService
         .deleteRecord(id)
         .then((_) => {
           setPersons(persons.filter((person) => person.id !== id))
