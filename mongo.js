@@ -1,8 +1,8 @@
-const mongoose = require("mongoose")
+const mongoose = require('mongoose')
 
 if (process.argv.length < 3) {
   console.log(
-    "Please provide the password as an argument: node mongo.js <password>"
+    'Please provide the password as an argument: node mongo.js <password>'
   )
   process.exit(1)
 }
@@ -15,11 +15,11 @@ const url = `mongodb+srv://mongodb-admin:${password}@cluster0.auypa.mongodb.net/
 
 mongoose
   .connect(url)
-  .then((result) => {
-    console.log("connected to MongoDB")
+  .then(() => {
+    console.log('connected to MongoDB')
   })
   .catch((error) => {
-    console.log("error connecting to MongoDB:", error.message)
+    console.log('error connecting to MongoDB:', error.message)
   })
 
 const personSchema = new mongoose.Schema({
@@ -27,7 +27,7 @@ const personSchema = new mongoose.Schema({
   number: String,
 })
 
-const Person = mongoose.model("Person", personSchema)
+const Person = mongoose.model('Person', personSchema)
 
 if (name && number) {
   const person = new Person({

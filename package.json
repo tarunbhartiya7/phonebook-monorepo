@@ -9,7 +9,9 @@
     "build:ui": "rm -rf build && cd phonebook-frontend/ && yarn run build --prod && cp -r build ../",
     "deploy": "git push heroku master",
     "deploy:full": "yarn run build:ui && git add . && git commit -m uibuild && git push && yarn run deploy",
-    "logs:prod": "heroku logs --tail"
+    "logs:prod": "heroku logs --tail",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "license": "MIT",
   "dependencies": {
@@ -21,6 +23,7 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "eslint": "^7.32.0",
     "nodemon": "^2.0.13"
   }
 }
