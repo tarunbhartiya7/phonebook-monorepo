@@ -1,16 +1,15 @@
-import React, { useState } from "react"
+import React from "react"
 
-const PersonForm = ({ addPerson }) => {
-  const [newName, setNewName] = useState("")
-  const [newNumber, setNewNumber] = useState("")
-
+const PersonForm = ({
+  addPerson,
+  newName,
+  newNumber,
+  setNewName,
+  setNewNumber,
+}) => {
   const handleSubmit = (event) => {
     event.preventDefault()
-
     addPerson(newName.trim(), newNumber.trim())
-
-    setNewName("")
-    setNewNumber("")
   }
 
   const handleNoteChange = (event) => setNewName(event.target.value)

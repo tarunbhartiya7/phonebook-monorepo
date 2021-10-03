@@ -14,6 +14,8 @@ const App = () => {
   const [persons, setPersons] = useState([])
   const [search, setSearch] = useState("")
   const [message, setMessage] = useState(null)
+  const [newName, setNewName] = useState("")
+  const [newNumber, setNewNumber] = useState("")
 
   useEffect(() => {
     personService.getAll().then((initialNotes) => {
@@ -55,6 +57,8 @@ const App = () => {
                 person.id !== changedPerson.id ? person : returnedPerson
               )
             )
+            setNewName("")
+            setNewNumber("")
             setMessage({ message: `Updated ${person.name}`, type: "success" })
             setTimeout(() => {
               setMessage(null)
@@ -81,6 +85,8 @@ const App = () => {
         .create(personObject)
         .then((returnedPerson) => {
           setPersons(persons.concat(returnedPerson))
+          setNewName("")
+          setNewNumber("")
           setMessage({
             message: `Added ${returnedPerson.name}`,
             type: "success",
@@ -133,7 +139,13 @@ const App = () => {
       <Notification {...message} />
       <Filter search={search} handleSearch={handleSearch} />
       <h3>Add a new</h3>
-      <PersonForm addPerson={addPerson} />
+      <PersonForm
+        addPerson={addPerson}
+        newName={newName}
+        newNumber={newNumber}
+        setNewName={setNewName}
+        setNewNumber={setNewNumber}
+      />
       <h3>Numbers</h3>
       <Persons persons={personsToShow} handleDelete={handleDelete} />
     </div>

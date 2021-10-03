@@ -46,10 +46,14 @@ app.get('/api/persons/:id', (request, response, next) => {
 
 app.delete('/api/persons/:id', (request, response, next) => {
   Person.findByIdAndRemove(request.params.id)
-    .then(() => {
+    .then((result) => {
+      if (!result) throw new Error('ID is invalid')
       response.status(204).end()
     })
-    .catch((error) => next(error))
+    .catch((error) => {
+      console.log('error', error)
+      next(error)
+    })
 })
 
 app.post('/api/persons', (request, response, next) => {

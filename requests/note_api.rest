@@ -18,8 +18,8 @@ POST http://localhost:3001/api/persons/
 content-type: application/json
 
 {
-    "name": "Superman",
-    "number": "2323"
+    "name": "Batman",
+    "number": "23233423534543"
 }
 
 ###
@@ -34,4 +34,4 @@ content-type: application/json
 
 ###
 
-DELETE  http://localhost:3001/api/persons/6157eec4c4322862b939f729
+DELETE  http://localhost:3001/api/persons/615907d159b1da5b1652d57b
